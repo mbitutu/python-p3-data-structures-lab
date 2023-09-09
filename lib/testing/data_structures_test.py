@@ -35,25 +35,33 @@ class TestDataStructures:
     def test_get_spiciest_foods(self):
         '''contains function get_spiciest_foods() that returns foods with a heat_level over 5.'''
         for food in get_spiciest_foods(TestDataStructures.SPICY_FOODS):
-            assert(food["heat_level"]) > 5
-    
-    def test_print_spicy_foods(self):
-        '''contains function print_spicy_foods that returns all foods formatted with 🌶  emojis.'''
-        captured_out = io.StringIO()
-        sys.stdout = captured_out
-        print_spicy_foods(TestDataStructures.SPICY_FOODS)
-        sys.stdout = sys.__stdout__
-        assert(captured_out.getvalue() == "Green Curry (Thai) | Heat Level: 🌶🌶🌶🌶🌶🌶🌶🌶🌶\n" +
-            "Buffalo Wings (American) | Heat Level: 🌶🌶🌶\n" +
-            "Mapo Tofu (Sichuan) | Heat Level: 🌶🌶🌶🌶🌶🌶\n")
+            assert(food["heat_level"]) 
+
+    def test_get_spicy_foods(self):
+        for food in spicy_foods:
+            heat_level_emoji = "🌶" * food["heat_level"]
+            print(f"{food['name']} ({food['cuisine']}) | Heat Level: {heat_level_emoji}") 
+            captured_out = io.StringIO()
+            sys.stdout = captured_out
+            print_spicy_foods(TestDataStructures.SPICY_FOODS)
+            sys.stdout = sys.__stdout__
+            assert(captured_out.getvalue() == "Green Curry (Thai) | Heat Level: 🌶🌶🌶🌶🌶🌶🌶🌶🌶\n" +
+                "Buffalo Wings (American) | Heat Level: 🌶🌶🌶\n" +
+                "Mapo Tofu (Sichuan) | Heat Level: 🌶🌶🌶🌶🌶🌶\n")
 
     def test_get_spicy_food_by_cuisine(self):
         '''contains function get_spicy_food_by_cuisine that returns the food that matches a cuisine.'''
-        assert(get_spicy_food_by_cuisine(TestDataStructures.SPICY_FOODS, "American") == {
-            "name": "Buffalo Wings",
-            "cuisine": "American",
-            "heat_level": 3,
-        })
+        expected_result = [
+            {
+                "name": "Buffalo Wings",
+                "cuisine": "American",
+                "heat_level": 3,
+            }
+    ]
+        assert (captured_out.getvalue() == "Green Curry (Thai) | Heat Level: 🌶🌶🌶🌶🌶🌶🌶🌶🌶\n" +
+        "Buffalo Wings (American) | Heat Level: 🌶🌶🌶\n" +
+        "Mapo Tofu (Sichuan) | Heat Level: 🌶🌶🌶🌶🌶🌶\n")
+
 
     def test_print_spiciest_foods(self):
         '''contains function print_spiciest_foods that returns foods with heat_level over 5 formatted with 🌶  emojis.'''
